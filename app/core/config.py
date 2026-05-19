@@ -10,10 +10,10 @@ class Settings(BaseSettings):
 
     # Events Provider API
     EVENTS_PROVIDER_BASE_URL: str = Field(
-        default="http://events-provider.dev-2.python-labs.ru"
+        default="https://events-provider.dev-2.python-labs.ru"
     )
     EVENTS_PROVIDER_INTERNAL_URL: str = Field(
-        default="http://student-system-events-provider-web.student-system-events-provider.svc:8000"
+        default="https://student-system-events-provider-web.student-system-events-provider.svc:8000"
     )
     EVENTS_PROVIDER_API_KEY: str = Field(default="")
 

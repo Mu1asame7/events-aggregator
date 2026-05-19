@@ -31,3 +31,5 @@ alembic/versions/__pycache__/
 
 # Docker
 *.pid
+
+ci.yml
