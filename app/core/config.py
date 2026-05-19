@@ -4,10 +4,16 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = Field(
-        default="postgresql+asyncpg://postgres:postgres@localhost:5432/events_db",
-        env="POSTGRES_CONNECTION_STRING",
-    )
+    _POSTGRES_URL: str = Field(default="", env="POSTGRES_CONNECTION_STRING")
+
+    @property
+    def DATABASE_URL(self) -> str:
+        url = self._POSTGRES_URL
+        if not url:
+            return "postgresql+asyncpg://postgres:postgres@localhost:5432/events_db"
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql+asyncpg://")
+        return url
 
     POSTGRES_HOST: str = Field(default="", env="POSTGRES_HOST")
     POSTGRES_PORT: int = Field(default=5432, env="POSTGRES_PORT")
@@ -16,7 +22,9 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = Field(default="", env="POSTGRES_DATABASE_NAME")
 
     # Events Provider API
-    EVENTS_PROVIDER_BASE_URL: str = Field(default="https://events-provider.dev-2.python-labs.ru")
+    EVENTS_PROVIDER_BASE_URL: str = Field(
+        default="https://events-provider.dev-2.python-labs.ru"
+    )
     EVENTS_PROVIDER_INTERNAL_URL: str = Field(
         default="https://student-system-events-provider-web.student-system-events-provider.svc:8000"
     )
