@@ -7,6 +7,10 @@ from alembic import context
 
 import sys
 from pathlib import Path
+import os
+
+sys.path.append(str(Path(__file__).parent.parent))
+
 from app.core.database import Base
 from app.models import Place, Event, Ticket, SyncMetadata
 
@@ -16,6 +20,12 @@ sys.path.append(str(Path(__file__).parent.parent))
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+database_url = os.environ.get('POSTGRES_CONNECTION_STRING', '')
+if database_url:
+    # Заменяем postgres:// на postgresql:// для SQLAlchemy
+    database_url = database_url.replace('postgres://', 'postgresql://')
+    config.set_main_option('sqlalchemy.url', database_url)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
