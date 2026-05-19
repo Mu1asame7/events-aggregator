@@ -16,9 +16,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = Field(default="", env="POSTGRES_DATABASE_NAME")
 
     # Events Provider API
-    EVENTS_PROVIDER_BASE_URL: str = Field(
-        default="https://events-provider.dev-2.python-labs.ru"
-    )
+    EVENTS_PROVIDER_BASE_URL: str = Field(default="https://events-provider.dev-2.python-labs.ru")
     EVENTS_PROVIDER_INTERNAL_URL: str = Field(
         default="https://student-system-events-provider-web.student-system-events-provider.svc:8000"
     )

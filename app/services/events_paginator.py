@@ -31,7 +31,6 @@ class EventsPaginator:
         return event
 
     async def _load_next_page(self):
-
         result = await self.client.get_events(
             changed_at=self.changed_at,
             next_url=self.next_url,

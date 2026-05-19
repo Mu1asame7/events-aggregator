@@ -11,9 +11,7 @@ class Event(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, index=True)
     name = Column(String(255), nullable=False)
-    place_id = Column(
-        UUID(as_uuid=True), ForeignKey("places.id", ondelete="CASCADE"), nullable=False
-    )
+    place_id = Column(UUID(as_uuid=True), ForeignKey("places.id", ondelete="CASCADE"), nullable=False)
     event_time = Column(DateTime, nullable=False)
     registration_deadline = Column(DateTime, nullable=False)
     status = Column(String(50), nullable=False)
@@ -25,6 +23,4 @@ class Event(Base):
 
     place = relationship("Place", back_populates="events")
 
-    tickets = relationship(
-        "Ticket", back_populates="event", cascade="all, delete-orphan"
-    )
+    tickets = relationship("Ticket", back_populates="event", cascade="all, delete-orphan")

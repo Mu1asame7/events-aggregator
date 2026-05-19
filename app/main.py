@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api.v1 import health
+from app.api.v1 import health, sync
 
 app = FastAPI(
     title="Events Aggregator",
@@ -9,6 +9,7 @@ app = FastAPI(
 
 
 app.include_router(health.router, prefix="/api", tags=["Healts"])
+app.include_router(sync.router, prefix="/api", tags=["Sync"])
 
 
 @app.get("/")

@@ -17,6 +17,4 @@ class Place(Base):
     created_at = Column(DateTime, default=datetime.now)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
-    events = relationship(
-        "Event", back_populates="place", cascade="all, delete-orphan"
-    )
+    events = relationship("Event", back_populates="place", cascade="all, delete-orphan")

@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.models.place import Place
 
 
@@ -23,10 +24,10 @@ class PlaceRepository:
             )
             self._session.add(place)
         else:
-            place.name=place_data["name"]
-            place.city=place_data["city"]
-            place.address=place_data["address"]
-            place.seats_pattern=place_data["seats_pattern"]
+            place.name = place_data["name"]
+            place.city = place_data["city"]
+            place.address = place_data["address"]
+            place.seats_pattern = place_data["seats_pattern"]
 
         await self._session.flush()
         return place

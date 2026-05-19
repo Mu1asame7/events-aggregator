@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.models.event import Event
 
 
@@ -29,13 +30,13 @@ class EventRepository:
             )
             self._session.add(event)
         else:
-            event.name=event_data["name"]
-            event.event_time=event_data["event_time"]
-            event.registration_deadline=event_data["registration_deadline"]
-            event.status=event_data["status"]
-            event.number_of_visitors=event_data["number_of_visitors"]
-            event.changed_at=event_data["changed_at"]
-            event.status_changed_at=event_data["status_changed_at"]
+            event.name = event_data["name"]
+            event.event_time = event_data["event_time"]
+            event.registration_deadline = event_data["registration_deadline"]
+            event.status = event_data["status"]
+            event.number_of_visitors = event_data["number_of_visitors"]
+            event.changed_at = event_data["changed_at"]
+            event.status_changed_at = event_data["status_changed_at"]
 
         await self._session.flush()
         return event

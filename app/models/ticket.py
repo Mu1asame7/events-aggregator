@@ -11,9 +11,7 @@ class Ticket(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     ticket_id = Column(UUID(as_uuid=True), unique=True, nullable=False)
-    event_id = Column(
-        UUID(as_uuid=True), ForeignKey("events.id", ondelete="CASCADE"), nullable=False
-    )
+    event_id = Column(UUID(as_uuid=True), ForeignKey("events.id", ondelete="CASCADE"), nullable=False)
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
     seat = Column(String(50), nullable=False)
