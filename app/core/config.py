@@ -8,11 +8,11 @@ class Settings(BaseSettings):
 
     @property
     def DATABASE_URL(self) -> str:
-        url = self.POSTGRES_URL
+        url = self.POSTGRES_RAW_URL
         if not url:
-            return "postgresql+asyncpg://postgres:postgres@localhost:5432/events_db"
-        if url.startswith("postgres://"):
-            url = url.replace("postgres://", "postgresql+asyncpg://")
+            return "postgresql://postgres:postgres@localhost:5432/events_db"
+        if url.startswith("postgresql+asyncpg://"):
+            url = url.replace("postgresql+asyncpg://", "postgresql://")
         return url
 
     POSTGRES_HOST: str = Field(default="", env="POSTGRES_HOST")
