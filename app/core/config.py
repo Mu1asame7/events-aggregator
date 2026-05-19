@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Database
-    _POSTGRES_URL: str = Field(default="", env="POSTGRES_CONNECTION_STRING")
+    POSTGRES_URL: str = Field(default="", env="POSTGRES_CONNECTION_STRING")
 
     @property
     def DATABASE_URL(self) -> str:
