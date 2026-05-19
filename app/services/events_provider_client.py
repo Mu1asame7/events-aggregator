@@ -82,7 +82,7 @@ class EventsProviderClient:
         if next_url:
             response = await self._client.get(
                 next_url, follow_redirects=True
-            )  # ← ключевой параметр
+            ) 
             return response.json()
         else:
             return await self._request(

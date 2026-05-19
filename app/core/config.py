@@ -5,8 +5,15 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = Field(
-        default="postgresql+asyncpg://postgres:postgres@localhost:5432/events_db"
+        default="postgresql+asyncpg://postgres:postgres@localhost:5432/events_db",
+        env="POSTGRES_CONNECTION_STRING",
     )
+
+    POSTGRES_HOST: str = Field(default="", env="POSTGRES_HOST")
+    POSTGRES_PORT: int = Field(default=5432, env="POSTGRES_PORT")
+    POSTGRES_USER: str = Field(default="", env="POSTGRES_USERNAME")
+    POSTGRES_PASSWORD: str = Field(default="", env="POSTGRES_PASSWORD")
+    POSTGRES_DB: str = Field(default="", env="POSTGRES_DATABASE_NAME")
 
     # Events Provider API
     EVENTS_PROVIDER_BASE_URL: str = Field(
